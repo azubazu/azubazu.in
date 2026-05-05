@@ -87,15 +87,15 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
 .sec-line{width:60px;height:4px;background:linear-gradient(90deg,var(--primary),var(--blue));border-radius:4px;margin:10px auto 0;}
 
 /* ROUND SERVICE BUTTONS — GEN Z Indian Style */
-.svc-wheel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px;max-width:900px;margin:0 auto;}
+.svc-wheel{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:700px;margin:0 auto;}
 .svc-btn{background:var(--white);border-radius:20px;padding:20px 12px;text-align:center;cursor:pointer;transition:all .25s;border:2px solid transparent;box-shadow:0 4px 16px rgba(0,0,0,0.07);position:relative;overflow:hidden;}
 .svc-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--c1,#FF6B00),var(--c2,#FFD700));opacity:0;transition:opacity .25s;}
 .svc-btn:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.15);border-color:transparent;}
 .svc-btn:hover::before{opacity:1;}
 .svc-btn:hover .svc-btn-icon,.svc-btn:hover .svc-btn-name,.svc-btn:hover .svc-btn-desc{position:relative;z-index:1;color:#fff;}
 .svc-btn.on{border-color:var(--primary);background:#FFF5F0;}
-.svc-btn-circle{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:linear-gradient(135deg,var(--c1,#FF6B00),var(--c2,#FFD700));box-shadow:0 4px 12px rgba(0,0,0,0.15);}
-.svc-btn-name{font-size:.78rem;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:4px;}
+.svc-btn-circle{width:80px;height:80px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:linear-gradient(135deg,var(--c1,#FF6B00),var(--c2,#FFD700));box-shadow:0 4px 16px rgba(0,0,0,0.2);}
+.svc-btn-name{font-size:.9rem;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:4px;}
 .svc-btn-desc{font-size:.62rem;color:var(--dim);line-height:1.3;}
 
 /* LOCATION BAR */
@@ -312,7 +312,7 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
 <!-- SERVICES -->
 <div class="sec">
   <div class="sec-head">
-    <h2>🏪 12 Service Categories</h2>
+    <h2>🏪 6 Service Categories</h2>
     <p>Tap any category to filter services near you</p>
     <div class="sec-line"></div>
   </div>
@@ -463,20 +463,14 @@ const EMG = [
 const emgScroll = document.getElementById('emgScroll');
 emgScroll.innerHTML = [...EMG,...EMG].map(e=>`<span class="emg-item"><strong>${e.n}</strong> ${e.num} <a href="tel:${e.num}" class="emg-call">Call</a></span><span class="emg-sep">|</span>`).join('');
 
-// 12 SERVICES A-Z with colors
+// 6 SERVICES A-Z (Alphabetical)
 const SERVICES = [
-  {icon:'🏠',name:'Apartment Services',desc:'Rental, PG, ownership',subs:['Rental','PG','Ownership','Service Apartment'],c1:'#FF6B00',c2:'#FFB347'},
-  {icon:'💇',name:'Beauty & Salon',desc:'Salon, parlour, spa',subs:['Ladies Salon','Gents Salon','Bridal','Spa','Mehendi','Makeup'],c1:'#FF69B4',c2:'#FFB6C1'},
-  {icon:'✂️',name:'Boutique & Tailor',desc:'Tailoring, stitching, ironing',subs:['Ladies Tailor','Gents Tailor','Blouse Work','School Uniform','Alterations','Ironing Service'],c1:'#9B59B6',c2:'#D7BDE2'},
-  {icon:'🧹',name:'Cleaning & Housekeeping',desc:'Deep cleaning, sanitization',subs:['Home Cleaning','Office Cleaning','Sanitization','Pest Control'],c1:'#27AE60',c2:'#82E0AA'},
-  {icon:'⚡',name:'Electrician & Home Repairs',desc:'Electricians, plumbers, AC, TV',subs:['Electrician','Plumber','Carpenter','Painter','AC Mechanic','TV Mechanic'],c1:'#F39C12',c2:'#F8C471'},
-  {icon:'🌸',name:'Flower & Pooja Services',desc:'Flower shops, temples, poojari',subs:['Flower Shop','Poojari','Temple','Church','Masjid'],c1:'#E74C3C',c2:'#F1948A'},
-  {icon:'🏥',name:'Hospitals & Medical',desc:'Hospitals, clinics, pharmacy',subs:['Hospital','Clinic','Pharmacy','Blood Bank','Ambulance','Lab'],c1:'#2ECC71',c2:'#A9DFBF'},
-  {icon:'🏨',name:'Lodges & Hotels',desc:'Hotels, lodges, guest houses',subs:['Hotel','Lodge','Service Apartment','Guest House'],c1:'#1A73E8',c2:'#7FB3F5'},
-  {icon:'🍽️',name:'Meals, Tiffin & Cook',desc:'Restaurant, tiffin, home cook',subs:['Restaurant','Tiffin Center','Home Meals','Home Cook','Dabba Service','Catering','Bakery','Cloud Kitchen'],c1:'#FF6B00',c2:'#FFD700'},
-  {icon:'🔧',name:'Puncture & Mechanics',desc:'Bike, car, auto service',subs:['Bike Puncture','Car Puncture','Bike Mechanic','Car Mechanic','Auto Service'],c1:'#566573',c2:'#AEB6BF'},
-  {icon:'🚌',name:'Transport & Travel',desc:'Bus, railway, airport, auto',subs:['Bus Station','Railway Station','Airport','Auto Driver','Taxi','Cab'],c1:'#0E6655',c2:'#76D7C4'},
-  {icon:'🏪',name:'All Other Services',desc:'Flour mill, petrol, police & more',subs:['Flour Mill','Petrol Bunk','Police Station','Pharma Company','Pharma Stockist','Laundry','Gym','Library'],c1:'#2C3E50',c2:'#85929E'},
+  {icon:'🛒',name:'Grocery, Milk & Vegetables',desc:'Kirana, milk, vegetables, supermarket',subs:['Kirana Store','Milk Booth','Vegetable Shop','Supermarket','Fruits','Dairy'],c1:'#27AE60',c2:'#82E0AA'},
+  {icon:'🏥',name:'Medical & Health',desc:'Hospital, clinic, pharmacy, blood bank',subs:['Hospital','Clinic','Pharmacy','Blood Bank','Ambulance','Lab','Doctor','Nursing Home'],c1:'#E74C3C',c2:'#F1948A'},
+  {icon:'🔧',name:'Mechanic, Puncture & Bike Repair',desc:'Bike, car, auto puncture & all repairs',subs:['Bike Puncture','Car Puncture','Bike Mechanic','Car Mechanic','Auto Repair','Key Mechanic','Tyre Shop'],c1:'#566573',c2:'#AEB6BF'},
+  {icon:'🏪',name:'Others — Offices, Travels & More',desc:'Offices, travels, apartments, hotels & more',subs:['Office','Travel Agency','Apartment','Hotel','Lodge','Petrol Bunk','Police Station','Bus Station','Railway Station','Airport','Flour Mill','Laundry','Gym','Pharma Stockist'],c1:'#1A73E8',c2:'#7FB3F5'},
+  {icon:'🙏',name:'Purohit & Temples',desc:'Poojari, temples, churches, masjids',subs:['Poojari','Temple','Church','Masjid','Flower Shop','Pooja Items'],c1:'#FF6B00',c2:'#FFD700'},
+  {icon:'✂️',name:'Salon, Tailor & Ironing',desc:'Salon, tailoring, stitching, ironing',subs:['Ladies Salon','Gents Salon','Bridal Makeup','Ladies Tailor','Gents Tailor','Blouse Work','School Uniform','Alterations','Ironing Service','Boutique'],c1:'#9B59B6',c2:'#D7BDE2'},
 ];
 
 // Render services

@@ -86,13 +86,141 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
 .sec-head p{font-size:.82rem;color:var(--dim);}
 .sec-line{width:60px;height:4px;background:linear-gradient(90deg,var(--primary),var(--blue));border-radius:4px;margin:10px auto 0;}
 
-/* ROUND SERVICE BUTTONS — GEN Z Indian Style */
-.svc-wheel{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:700px;margin:0 auto;}
-.svc-btn{background:var(--white);border-radius:20px;padding:20px 12px;text-align:center;cursor:pointer;transition:all .25s;border:2px solid transparent;box-shadow:0 4px 16px rgba(0,0,0,0.07);position:relative;overflow:hidden;}
-.svc-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--c1,#FF6B00),var(--c2,#FFD700));opacity:0;transition:opacity .25s;}
-.svc-btn:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.15);border-color:transparent;}
-.svc-btn:hover::before{opacity:1;}
-.svc-btn:hover .svc-btn-icon,.svc-btn:hover .svc-btn-name,.svc-btn:hover .svc-btn-desc{position:relative;z-index:1;color:#fff;}
+
+  /* ═══ CIRCULAR 3D SERVICE BUTTONS ═══ */
+  .svc-wheel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 8px;
+  }
+  .svc-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all .25s ease;
+    padding: 8px 4px;
+  }
+  .svc-btn:active { transform: scale(0.95); }
+  /* Outer gradient ring */
+  .svc-ring {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, var(--rc1), var(--rc2));
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.3);
+    transition: all .25s ease;
+    animation: none;
+  }
+  .svc-btn:hover .svc-ring, .svc-btn.on .svc-ring {
+    transform: scale(1.1);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25), 0 0 20px var(--glow), inset 0 1px 2px rgba(255,255,255,0.4);
+  }
+  /* Inner circle */
+  .svc-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--rc1), var(--rc2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: inset 0 3px 6px rgba(255,255,255,0.25), inset 0 -3px 6px rgba(0,0,0,0.15);
+    transition: all .25s ease;
+  }
+  .svc-btn:hover .svc-inner { filter: brightness(1.1); }
+  .svc-btn.on .svc-inner { box-shadow: inset 0 3px 6px rgba(255,255,255,0.35), 0 0 16px var(--glow); }
+  /* Caption English */
+  .svc-cap-en {
+    font-family: 'Poppins', sans-serif;
+    font-size: .72rem;
+    font-weight: 800;
+    color: var(--dark);
+    text-align: center;
+    margin-top: 8px;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
+  /* Caption Telugu */
+  .svc-cap-tel {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--dim);
+    text-align: center;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+  .svc-btn.on .svc-cap-en { color: var(--primary); }
+  .svc-btn.on .svc-cap-tel { color: var(--primary); opacity: .8; }
+
+  /* ═══ CIRCULAR DIRECTORY BUTTONS ═══ */
+  .sc-acts {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .sa {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: .55rem !important;
+    font-weight: 800 !important;
+    padding: 4px !important;
+    flex: none !important;
+    transition: all .2s ease !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.1) !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    border: 2px solid transparent !important;
+    animation: none !important;
+  }
+  .sa:hover { transform: scale(1.12) !important; box-shadow: 0 6px 16px rgba(0,0,0,0.2) !important; }
+  .sa:active { transform: scale(0.92) !important; animation: bounce .3s ease !important; }
+  @keyframes bounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+  .sa-label { font-size: .5rem; font-weight: 800; display: block; line-height: 1.1; }
+  .sa-tel { font-family: 'Noto Sans Telugu', sans-serif; font-size: .48rem; display: block; opacity: .85; line-height: 1.2; margin-top: 1px; }
+  .sa-c { background: #E8FFF0 !important; color: #00A651 !important; border-color: #00A651 !important; }
+  .sa-c:hover { background: #00A651 !important; color: #fff !important; }
+  .sa-l { background: #E8F0FF !important; color: #1A73E8 !important; border-color: #1A73E8 !important; }
+  .sa-l:hover { background: #1A73E8 !important; color: #fff !important; }
+  .sa-w { background: #E8FFF5 !important; color: #25D366 !important; border-color: #25D366 !important; }
+  .sa-w:hover { background: #25D366 !important; color: #fff !important; }
+  .sa-e { background: #FFF0E8 !important; color: #FF6B00 !important; border-color: #FF6B00 !important; }
+  .sa-e:hover { background: #FF6B00 !important; color: #fff !important; }
+  .sa-m { background: #F0F8FF !important; color: #0070DD !important; border-color: #0070DD !important; }
+  .sa-m:hover { background: #0070DD !important; color: #fff !important; }
+  .sa-sh { background: #F5F0FF !important; color: #7B2FFF !important; border-color: #7B2FFF !important; }
+  .sa-sh:hover { background: #7B2FFF !important; color: #fff !important; }
+  .sa-ed { background: #FFFBE8 !important; color: #CC8800 !important; border-color: #CC8800 !important; }
+  .sa-ed:hover { background: #CC8800 !important; color: #fff !important; }
+  .sa-dl { background: #FFF0F0 !important; color: #CC0000 !important; border-color: #CC0000 !important; }
+  .sa-dl:hover { background: #CC0000 !important; color: #fff !important; }
+
+  /* Pulse glow for call button */
+  .sa-c { animation: pulse-green 2s infinite !important; }
+  @keyframes pulse-green { 0%,100%{box-shadow:0 4px 10px rgba(0,166,81,0.2)} 50%{box-shadow:0 4px 20px rgba(0,166,81,0.5)} }
+
+  /* FILTER BAR BILINGUAL */
+  .loc-sel-wrap { display: flex; flex-direction: column; }
+  .loc-sel-en { font-size: .75rem; font-weight: 700; }
+  .loc-sel-tel { font-family: 'Noto Sans Telugu', sans-serif; font-size: .62rem; color: var(--primary); }
+
 .svc-btn.on{border-color:var(--primary);background:#FFF5F0;}
 .svc-btn-circle{width:80px;height:80px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:linear-gradient(135deg,var(--c1,#FF6B00),var(--c2,#FFD700));box-shadow:0 4px 16px rgba(0,0,0,0.2);}
 .svc-btn-name{font-size:.9rem;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:4px;}
@@ -274,7 +402,7 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
     </div>
     <div class="search-filters">
       <select class="filter-sel" id="townSelect" onchange="filterShops()">
-        <option value="">📍 All Cities</option>
+        <option value="">📍 All Cities | అన్ని నగరాలు</option>
         <optgroup label="Andhra Pradesh">
           <option>Amaravati</option><option>Visakhapatnam</option><option>Vijayawada</option>
           <option>Guntur</option><option>Tirupati</option><option>Kakinada</option>
@@ -291,12 +419,12 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
         </optgroup>
       </select>
       <select class="filter-sel" id="svcSelect" onchange="filterByService()">
-        <option value="">🏪 All Services</option>
+        <option value="">🏪 All Services | అన్ని సేవలు</option>
       </select>
       <select class="filter-sel" id="subSelect" onchange="filterShops()">
-        <option value="">📋 Sub-Service</option>
+        <option value="">📋 Sub-Service | సేవ రకం</option>
       </select>
-      <button class="gps-btn2" onclick="getGPS()">📡 My Location</button>
+      <button class="gps-btn2" onclick="getGPS()">📡 My Location<span style="font-family:'Noto Sans Telugu',sans-serif;font-size:.6rem;display:block;opacity:.85;">నా స్థానం</span></button>
     </div>
   </div>
 </div>
@@ -321,9 +449,9 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
 
 <!-- LOCATION BAR -->
 <div class="loc-bar">
-  <span style="font-size:.75rem;color:var(--dim);font-weight:700;">📍 Filter:</span>
+  <span style="font-size:.75rem;color:var(--dim);font-weight:700;">📍 Filter:<span style="font-family:'Noto Sans Telugu',sans-serif;font-size:.65rem;color:var(--primary);display:block;">వడపోత</span></span>
   <select class="loc-sel" id="townSelect2" onchange="syncTown(this)">
-    <option value="">All Cities</option>
+    <option value="">All Cities | అన్ని నగరాలు</option>
     <optgroup label="Andhra Pradesh">
       <option>Amaravati</option><option>Visakhapatnam</option><option>Vijayawada</option>
       <option>Guntur</option><option>Tirupati</option><option>Kakinada</option>
@@ -346,11 +474,17 @@ nav{background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,0.1);padding:12px 2
 <div class="sec">
   <div class="shops-wrap">
     <div class="shops-hdr">
-      <div class="shops-ttl">🏪 Shops & Services</div>
+      <div class="shops-ttl">🏪 Shops &amp; Services | <span style="font-family:'Noto Sans Telugu',sans-serif;">షాపులు &amp; సేవలు</span></div>
       <div class="shops-ct" id="shopsCt">Loading...</div>
     </div>
     <div id="shopsList"></div>
   </div>
+</div>
+
+<!-- MARKETING CAPTION -->
+<div class="mkt-caption">
+  AZU BAZU — Free Service for All. Easy to use. Made for everyone.
+  <span class="mkt-caption-tel">AZU BAZU — అందరికీ ఉచిత సేవ. వాడటానికి సులభం. అందరి కోసం తయారు చేయబడింది.</span>
 </div>
 
 <!-- FOOTER -->
@@ -463,14 +597,14 @@ const EMG = [
 const emgScroll = document.getElementById('emgScroll');
 emgScroll.innerHTML = [...EMG,...EMG].map(e=>`<span class="emg-item"><strong>${e.n}</strong> ${e.num} <a href="tel:${e.num}" class="emg-call">Call</a></span><span class="emg-sep">|</span>`).join('');
 
-// 6 SERVICES A-Z (Alphabetical)
+// 6 SERVICES BILINGUAL A-Z
 const SERVICES = [
-  {icon:'🛒',name:'Grocery, Milk & Vegetables',desc:'Kirana, milk, vegetables, supermarket',subs:['Kirana Store','Milk Booth','Vegetable Shop','Supermarket','Fruits','Dairy'],c1:'#27AE60',c2:'#82E0AA'},
-  {icon:'🏥',name:'Medical & Health',desc:'Hospital, clinic, pharmacy, blood bank',subs:['Hospital','Clinic','Pharmacy','Blood Bank','Ambulance','Lab','Doctor','Nursing Home'],c1:'#E74C3C',c2:'#F1948A'},
-  {icon:'🔧',name:'Mechanic, Puncture & Bike Repair',desc:'Bike, car, auto puncture & all repairs',subs:['Bike Puncture','Car Puncture','Bike Mechanic','Car Mechanic','Auto Repair','Key Mechanic','Tyre Shop'],c1:'#566573',c2:'#AEB6BF'},
-  {icon:'🏪',name:'Others — Offices, Travels & More',desc:'Offices, travels, apartments, hotels & more',subs:['Office','Travel Agency','Apartment','Hotel','Lodge','Petrol Bunk','Police Station','Bus Station','Railway Station','Airport','Flour Mill','Laundry','Gym','Pharma Stockist'],c1:'#1A73E8',c2:'#7FB3F5'},
-  {icon:'🙏',name:'Purohit & Temples',desc:'Poojari, temples, churches, masjids',subs:['Poojari','Temple','Church','Masjid','Flower Shop','Pooja Items'],c1:'#FF6B00',c2:'#FFD700'},
-  {icon:'✂️',name:'Salon, Tailor & Ironing',desc:'Salon, tailoring, stitching, ironing',subs:['Ladies Salon','Gents Salon','Bridal Makeup','Ladies Tailor','Gents Tailor','Blouse Work','School Uniform','Alterations','Ironing Service','Boutique'],c1:'#9B59B6',c2:'#D7BDE2'},
+  {icon:'🛒',name:'Grocery, Milk & Vegetables',tel:'కిరాణా / పాల / కూరగాయలు',desc:'Kirana, milk booth, vegetables',subs:['Kirana Store','Milk Booth','Vegetable Shop','Supermarket','Fruits','Dairy'],c1:'#27AE60',c2:'#82E0AA'},
+  {icon:'🏥',name:'Medical & Hospital',tel:'వైద్య / ఆసుపత్రి',desc:'Hospital, clinic, pharmacy',subs:['Hospital','Clinic','Pharmacy','Blood Bank','Ambulance','Lab','Doctor'],c1:'#E74C3C',c2:'#F1948A'},
+  {icon:'🔧',name:'Mechanic & Puncture',tel:'మెకానిక్ / పంక్చర్',desc:'Bike, car, auto puncture & repairs',subs:['Bike Puncture','Car Puncture','Bike Mechanic','Car Mechanic','Auto Repair','Key Mechanic'],c1:'#566573',c2:'#AEB6BF'},
+  {icon:'🏪',name:'Office & Travels',tel:'ఆఫీస్ / ట్రావెల్స్',desc:'Offices, travels, apartments & more',subs:['Office','Travel Agency','Apartment','Hotel','Lodge','Petrol Bunk','Police Station','Bus Station','Railway Station','Airport','Flour Mill','Laundry'],c1:'#1A73E8',c2:'#7FB3F5'},
+  {icon:'🙏',name:'Poojari & Temple',tel:'పూజారి / దేవాలయం',desc:'Poojari, temples, churches, masjids',subs:['Poojari','Temple','Church','Masjid','Flower Shop','Pooja Items'],c1:'#FF6B00',c2:'#FFD700'},
+  {icon:'✂️',name:'Salon, Tailor & Ironing',tel:'సలోన్ / టైలర్ / ఇస్త్రీ',desc:'Salon, tailoring, ironing services',subs:['Ladies Salon','Gents Salon','Bridal Makeup','Ladies Tailor','Gents Tailor','Blouse Work','Alterations','Ironing Service'],c1:'#9B59B6',c2:'#D7BDE2'},
 ];
 
 // Render services
@@ -484,7 +618,15 @@ SERVICES.forEach(s => {
   div.className = 'svc-btn';
   div.style.setProperty('--c1', s.c1);
   div.style.setProperty('--c2', s.c2);
-  div.innerHTML = `<div class="svc-btn-circle" style="background:linear-gradient(135deg,${s.c1},${s.c2})">${s.icon}</div><div class="svc-btn-name">${s.name}</div><div class="svc-btn-desc">${s.desc}</div>`;
+  div.style.setProperty('--rc1', s.c1);
+  div.style.setProperty('--rc2', s.c2);
+  div.style.setProperty('--glow', s.c1+'88');
+  div.innerHTML = `
+    <div class="svc-ring">
+      <div class="svc-inner">${s.icon}</div>
+    </div>
+    <div class="svc-cap-en">${s.name}</div>
+    <div class="svc-cap-tel">${s.tel}</div>`;
   div.onclick = () => {
     activeService = activeService === s.name ? '' : s.name;
     document.querySelectorAll('.svc-btn').forEach(b=>b.classList.remove('on'));
@@ -502,7 +644,7 @@ SERVICES.forEach(s => {
 svcSel.addEventListener('change', () => {
   const sel = SERVICES.find(s=>s.name===svcSel.value);
   const subSel = document.getElementById('subSelect');
-  subSel.innerHTML = '<option value="">📋 Sub-Service</option>';
+  subSel.innerHTML = '<option value="">📋 Sub-Service | సేవ రకం</option>';
   if(sel) sel.subs.forEach(sub => {
     const o = document.createElement('option');
     o.value = sub; o.textContent = sub; subSel.appendChild(o);
@@ -554,7 +696,7 @@ window.filterByService = function() {
   activeService = svcSel.value;
   const sel = SERVICES.find(s=>s.name===activeService);
   const subSel = document.getElementById('subSelect');
-  subSel.innerHTML = '<option value="">📋 Sub-Service</option>';
+  subSel.innerHTML = '<option value="">📋 Sub-Service | సేవ రకం</option>';
   if(sel) sel.subs.forEach(sub=>{const o=document.createElement('option');o.value=sub;o.textContent=sub;subSel.appendChild(o);});
   filterShops();
 };
@@ -612,12 +754,12 @@ function renderShops(shops) {
       ${(s.district||s.pincode)?`<div class="sc-pincode">📮 ${[s.district,s.state,s.pincode].filter(Boolean).join(' · ')}</div>`:''}
       ${s.desc?`<div class="sc-desc">${s.desc}</div>`:''}
       <div class="sc-acts">
-        ${s.phone?`<a href="tel:${s.phone}" class="sa sa-c">📞 Call</a>`:''}
-        ${s.landline?`<a href="tel:${s.landline}" class="sa sa-l">☎️ Landline</a>`:''}
-        ${(s.whatsapp||s.phone)?`<a href="https://wa.me/91${s.whatsapp||s.phone}" target="_blank" class="sa sa-w">💬 WA</a>`:''}
-        ${s.email?`<a href="mailto:${s.email}" class="sa sa-e">📧 Email</a>`:''}
-        ${s.maps?`<a href="${s.maps}" target="_blank" class="sa sa-m">📍 Map</a>`:''}
-        <button class="sa sa-sh" onclick="shareShop('${s.id}')">📤</button>
+        ${s.phone?`<a href="tel:${s.phone}" class="sa sa-c"><span class="sa-label">📞 Call</span><span class="sa-tel">కాల్</span></a>`:''}
+        ${s.landline?`<a href="tel:${s.landline}" class="sa sa-l"><span class="sa-label">☎️ Landline</span><span class="sa-tel">ల్యాండ్‌లైన్</span></a>`:''}
+        ${(s.whatsapp||s.phone)?`<a href="https://wa.me/91${s.whatsapp||s.phone}" target="_blank" class="sa sa-w"><span class="sa-label">💬 WA</span><span class="sa-tel">వాట్సాప్</span></a>`:''}
+        ${s.email?`<a href="mailto:${s.email}" class="sa sa-e"><span class="sa-label">📧 Email</span><span class="sa-tel">ఇమెయిల్</span></a>`:''}
+        ${s.maps?`<a href="${s.maps}" target="_blank" class="sa sa-m"><span class="sa-label">📍 Map</span><span class="sa-tel">మ్యాప్</span></a>`:''}
+        <button class="sa sa-sh" onclick="shareShop('${s.id}')"><span class="sa-label">📤 Share</span><span class="sa-tel">పంచుకోండి</span></button>
         <button class="sa sa-ed" onclick="editShop('${s.id}')">✏️</button>
         <button class="sa sa-dl" onclick="deleteShop('${s.id}')">🗑️</button>
       </div>
